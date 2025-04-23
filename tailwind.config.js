@@ -14,26 +14,6 @@ export default {
           main: '#61C9FF',
           dark: '#4BA5D9',
         },
-        accent: {
-          light: '#FF9C6B',
-          main: '#FF7A38',
-          dark: '#E55F20',
-        },
-        success: {
-          light: '#7AEBB0',
-          main: '#4CD890',
-          dark: '#36B476',
-        },
-        warning: {
-          light: '#FFD580',
-          main: '#FFC043',
-          dark: '#E5A01F',
-        },
-        error: {
-          light: '#FF8080',
-          main: '#FF5252',
-          dark: '#E53B3B',
-        },
         neutral: {
           white: '#FFFFFF',
           lightest: '#F5F5F7',
