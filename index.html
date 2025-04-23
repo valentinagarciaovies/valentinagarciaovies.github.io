@@ -8,8 +8,11 @@
 </head>
 <body>
     <header>
-        <h1>Valentina Garcia Ovies</h1>
-        <p>Welcome to my personal portfolio!</p>
+        <div class="container">
+            <h1>Valentina Garcia Ovies</h1>
+            <p>Web Developer | Designer | Problem Solver</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
     </header>
     
     <nav>
@@ -20,29 +23,29 @@
         </ul>
     </nav>
 
-    <section id="about">
+    <section id="about" class="container">
         <h2>About Me</h2>
         <p>Brief introduction about yourself. You can include your background, education, and interests.</p>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="container">
         <h2>Projects</h2>
-        <ul>
-            <li>
+        <div class="project-grid">
+            <div class="project-card">
                 <h3>Project 1</h3>
                 <p>Description of project 1. Include technologies used and your role.</p>
-                <a href="https://github.com/yourusername/project1" target="_blank">View on GitHub</a>
-            </li>
-            <li>
+                <a href="https://github.com/yourusername/project1" target="_blank" class="btn">View on GitHub</a>
+            </div>
+            <div class="project-card">
                 <h3>Project 2</h3>
                 <p>Description of project 2. Include technologies used and your role.</p>
-                <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
-            </li>
+                <a href="https://github.com/yourusername/project2" target="_blank" class="btn">View on GitHub</a>
+            </div>
             <!-- Add more projects as needed -->
-        </ul>
+        </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="container">
         <h2>Skills</h2>
         <ul>
             <li>Skill 1</li>
