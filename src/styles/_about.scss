@@ -9,18 +9,26 @@
 
 .tech {
   margin: 10px;
-  .tech img.icon {
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
-    vertical-align: middle; /* Align with font icons */
-    margin: 0 5px; /* Add some spacing */
+
+  img.icon {
+    height: 1.8em;  // STARTING VALUE - Adjust '1.8' as needed
+    width: auto;    // Let width adjust automatically
+    vertical-align: middle; // Align vertically
+    margin-bottom: 3px; // Optional: Fine-tune vertical position if needed
+    margin-left: 0.25em; // Add spacing
+    margin-right: 0.25em; // Add spacing
   }
-  /* You might need to adjust existing .tech i styles too */
-  .tech i {
-     vertical-align: middle; /* Ensure alignment */
-     margin: 0 5px; /* Ensure consistent spacing */
-     /* Existing font-size etc. */
+
+  // Target the font icons (i tags) to ensure consistency
+  i {
+    font-size: 1.8em; // STARTING VALUE - Adjust '1.8' to match height above
+    vertical-align: middle; // Align vertically
+    margin-left: 0.25em; // Add consistent spacing
+    margin-right: 0.25em; // Add consistent spacing
+    // Note: Devicon 'colored' class might affect color, but size should be controlled here.
   }
+
+  // --- End of added icon sizing rules --- //
 }
 
 
