@@ -6,13 +6,16 @@ description: Personal portfolio for business and data analytics.
 
 # User settings
 username: Valentina Garcia Ovies
-user_description: Bienvenidos! I’m a business analytics graduate with a background in finance and international Business. Over the past couple of years, I’ve developed key skills through hands-on projects—some showcased here, others that quietly shaped my journey. 
-  Born and raised in Colombia, I carry with me a deep passion for growth and perseverance. Moving to the U.S. taught me the value of continuous learning, and I’m excited to keep expanding my skills in data analytics—both through new tools and by learning from others. Thank you for stopping by!
+user_description: Bienvenidos! I’m a business analytics graduate with a background in finance and international Business. Over the past couple of years, I’ve developed key skills through hands-on projects, some showcased here, others that quietly shaped my journey. 
+  Born and raised in Colombia, I carry with me a deep passion for growth and perseverance. Moving to the U.S. taught me the value of continuous learning, and I’m excited to keep expanding my skills in data analytics, both through new tools and by learning from others. Thank you for stopping by!
 user_title: Business Analyst
 email: garciaoviesvalentina@gmail.com
-twitter_username: lorem_ipsum
+tableau_username: lorem_ipsum
 github_username:  lorem_ipsum
-gplus_username:  lorem_ipsum
+linkedin_username:  lorem_ipsum
+personal_description: Bienvenidos! I’m a business analytics graduate with a background in finance and international Business. Over the past couple of years, I’ve developed key skills through hands-on projects, some showcased here, others that quietly shaped my journey. 
+  Born and raised in Colombia, I carry with me a deep passion for growth and perseverance. Moving to the U.S. taught me the value of continuous learning, and I’m excited to keep expanding my skills in data analytics, both through new tools and by learning from others. Thank you for stopping by!
+user_title: Business Analyst
 
 # Google-analytics
 google-analytics:
