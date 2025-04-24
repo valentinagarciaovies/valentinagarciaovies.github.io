@@ -11,6 +11,19 @@
   margin: 10px;
 }
 
+.tech img.icon {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  vertical-align: middle; /* Align with font icons */
+  margin: 0 5px; /* Add some spacing */
+}
+/* You might need to adjust existing .tech i styles too */
+.tech i {
+   vertical-align: middle; /* Ensure alignment */
+   margin: 0 5px; /* Ensure consistent spacing */
+   /* Existing font-size etc. */
+}
+
 .user {
   text-align: center;
   font-size: 60px;
