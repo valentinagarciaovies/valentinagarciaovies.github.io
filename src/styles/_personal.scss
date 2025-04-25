@@ -5,6 +5,14 @@
   @media only screen and (min-width: $cut) {
     width: 80%;
   }
+  p {
+    max-width: 960px;  // Set the maximum width it can reach on large screens
+    width: 90%;      // Use 90% of the container width, allowing it to shrink
+    margin: 16px auto; // Keep the 16px top/bottom margin and auto left/right for centering
+    // Optional: Ensure text is left-aligned if the parent centers it
+    // text-align: left;
+  }
+
 }
 
 .tech {
