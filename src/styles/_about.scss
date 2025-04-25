@@ -10,9 +10,9 @@
 .tech {
   margin: 10px;
 
-  img {
-    height: 1em;  // STARTING VALUE - Adjust '1.8' as needed
-    width: 75px;    // Let width adjust automatically
+  img.icon {
+    height: 75px;  // STARTING VALUE - Adjust '1.8' as needed
+    width: auto;    // Let width adjust automatically
     vertical-align: middle;// Align vertically
     margin-bottom: 3px; // Optional: Fine-tune vertical position if needed
     margin-left: 0.25em; // Add spacing
