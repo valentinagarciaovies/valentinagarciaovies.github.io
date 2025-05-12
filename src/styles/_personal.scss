@@ -4,7 +4,7 @@
     position: relative; // For positioning nav buttons
     overflow: hidden !important;   // Crucial: Hides the parts of the track that are not visible. Added !important for emphasis.
     width: 100%; // Take full width of its parent (#personal)
-    max-width: 700px; // Max width of the carousel itself, adjust as needed
+    max-width: 350px; // Max width of the carousel itself, adjust as needed
     height: 450px;      // Explicitly set height to match slides, helps overflow:hidden
     margin: 20px auto; // Center the carousel
     border-radius: 8px;
