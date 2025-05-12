@@ -18,7 +18,7 @@ personal_description: Life is full of blessings and some things I enjoy in life 
 
 # Google-analytics
 google-analytics:
-  id: "G-5L45ZCHS89"
+  id: G-5L45ZCHS89
 
 
 exclude: ['package.json', 'src' , 'node_modules']
