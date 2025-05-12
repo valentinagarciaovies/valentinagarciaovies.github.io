@@ -20,6 +20,7 @@
 
   // .personal-photo is now also .carousel-slide
 .personal-photo.carousel-slide {
+    flex-basis: 100%; // Explicitly set the initial size of the flex item
     flex-shrink: 0;    // Prevent slides from shrinking below their defined width
     min-width: 100%; // Each slide takes the full width of the container
     width: 100%;
