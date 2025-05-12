@@ -1,0 +1,40 @@
+#personal{
+// Styling for the personal image gallery
+
+.personal-image-gallery {
+  display: flex;
+  flex-wrap: wrap; // Allows images to wrap to the next line if they don't fit
+  justify-content: center; // Centers images if there's extra space in a row
+  gap: 20px; // Space between images (horizontally and vertically)
+  padding: 20px 0; // Adds some padding above and below the gallery
+  margin: 0 auto; // Centers the gallery container itself if it has a max-width
+  max-width: 1200px; // Optional: constrain the max width of the gallery
+}
+
+.personal-photo {
+  width: 100%; // Makes the image responsive within its flex item container
+  max-width: 800px; // Adjust this to control the maximum size of your images
+  height: 800px; // You can set a fixed height
+  object-fit: cover; // Ensures the image covers the area, cropping if necessary to maintain aspect ratio
+  border-radius: 8px; // Optional: adds rounded corners to your images
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Optional: adds a subtle shadow
+  transition: transform 0.3s ease; // Optional: for a hover effect
+
+  &:hover {
+    transform: scale(1.05); // Optional: slight zoom on hover
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .personal-photo {
+    max-width: calc(50% - 10px); // Example: 2 images per row, accounting for gap
+  }
+}
+
+@media (max-width: 480px) {
+  .personal-photo {
+    max-width: calc(100% - 10px); // Example: 1 image per row on very small screens
+  }
+}
+}
