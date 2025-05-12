@@ -1,15 +1,19 @@
  <div class="user-details">
   <h1> Me Outside of Work</h1>
-  <!-- The paragraph {{site.personal_description}} has been removed. -->
+
 </div>
-
-<div class="personal-image-gallery">
-  <img src="{{ '/assets/img/personal/Personal_dance.jpg' | prepend: site.baseurl }}" alt="Valentina Garcia Ovies Dancing" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_travel.jpg' | prepend: site.baseurl }}" alt="Traveling to Colombia" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_tennis.jpg' | prepend: site.baseurl }}" alt="Playing tennis with friends in college" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_fam.jpg' | prepend: site.baseurl }}" alt="Speding time with family" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_food.jpg' | prepend: site.baseurl }}" alt="Trying different food" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_friends.jpg' | prepend: site.baseurl }}" alt="Speding time with friends" class="personal-photo">
-  <img src="{{ '/assets/img/personal/Personal_fam1.jpg' | prepend: site.baseurl }}" alt="Speding time with family" class="personal-photo">
-
+<div id="personal-carousel-container" class="personal-image-gallery">
+  <div class="carousel-track">
+   
+  <img src="{{ '/assets/img/personal/Personal_dance.jpg' | prepend: site.baseurl }}" alt="Valentina Garcia Ovies Dancing" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_travel.jpg' | prepend: site.baseurl }}" alt="Traveling to Colombia" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_tennis.jpg' | prepend: site.baseurl }}" alt="Playing tennis with friends in college" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_fam.jpg' | prepend: site.baseurl }}" alt="Speding time with family" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_food.jpg' | prepend: site.baseurl }}" alt="Trying different food" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_friends.jpg' | prepend: site.baseurl }}" alt="Speding time with friends" class="personal-photo carousel-slide">
+  <img src="{{ '/assets/img/personal/Personal_fam1.jpg' | prepend: site.baseurl }}" alt="Speding time with family" class="personal-photo carousel-slide">
+  </div>
+  <button class="carousel-button prev" aria-label="Previous image">&#10094;</button>
+  <button class="carousel-button next" aria-label="Next image">&#10095;</button>
+  <div class="carousel-dots"></div>
 </div>
