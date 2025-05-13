@@ -1,49 +1,144 @@
  <div class="user-details">
   <h1> Me Outside of Work</h1>
-
 </div>
+
+<style>
+  .carousel-container {
+    position: relative;
+    width: 90%; /* Responsive width */
+    max-width: 960px; /* Consistent with your other sections */
+    margin: 30px auto; /* Add some space around it */
+    overflow: hidden; /* Crucial for hiding non-visible slides */
+    border-radius: 8px; /* Optional: for rounded corners */
+  }
+
+  .carousel-track {
+    display: flex;
+  }
+
+  .carousel-item {
+    min-width: 100%; /* Each item takes full width of the container */
+    flex-shrink: 0; /* Prevent items from shrinking */
+    box-sizing: border-box;
+  }
+
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below image if it's the only content */
+    margin: 0 auto; /* Center image if it's narrower than container */
+  }
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(26, 34, 44, 0.7); /* Using a darker shade, semi-transparent */
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.8rem;
+    line-height: 1;
+    border-radius: 50%; /* Circular buttons */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .carousel-button:hover {
+    background-color: #1abc9c; /* Your $main color */
+  }
+
+  .carousel-button.prev {
+    left: 15px;
+  }
+
+  .carousel-button.next {
+    right: 15px;
+  }
+
+  @media (max-width: 768px) { /* Your $cut breakpoint */
+    .carousel-button {
+      font-size: 1.4rem;
+      width: 35px;
+      height: 35px;
+      padding: 10px;
+      left: 10px;
+    }
+    .carousel-button.next {
+      right: 10px;
+    }
+  }
+
+  .carousel-dots {
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .carousel-dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .carousel-dots .dot.active {
+    background-color: white;
+    transform: scale(1.2);
+  }
+
+  .carousel-dots .dot:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 768px) { /* Your $cut breakpoint */
+    .carousel-dots {
+      bottom: 15px;
+    }
+    .carousel-dots .dot {
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+    }
+  }
+</style>
+
 <div class="carousel-container">
   <div class="carousel-track">
-    <!-- Add your carousel items here -->
-    <div class="carousel-item" style="background-color: #e0e0e0;">
-      <!-- Content for item 1 -->
-      <img src="{{ '/assets/img/personal/Personal_dance.jpg' | prepend: site.baseurl }}" alt="Valentina Garcia Ovies Dancing" class="personal-photo carousel-slide">
-      <!-- Or any other content -->
-      <!-- <h2>Slide 1</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_dance.jpg' | prepend: site.baseurl }}" alt="Valentina Garcia Ovies Dancing" class="personal-photo">
     </div>
-    <div class="carousel-item" style="background-color: #c0e0e0;">
-      <!-- Content for item 2 -->
-      <img src="{{ '/assets/img/personal/Personal_travel.jpg' | prepend: site.baseurl }}" alt="Traveling to Colombia" class="personal-photo carousel-slide">
-      <!-- <h2>Slide 2</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_travel.jpg' | prepend: site.baseurl }}" alt="Traveling to Colombia" class="personal-photo">
     </div>
-    <div class="carousel-item" style="background-color: #e0c0e0;">
-      <!-- Content for item 3 -->
-      <img src="{{ '/assets/img/personal/Personal_tennis.jpg' | prepend: site.baseurl }}" alt="Playing tennis with friends in college" class="personal-photo carousel-slide">
-      <!-- <h2>Slide 3</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_tennis.jpg' | prepend: site.baseurl }}" alt="Playing tennis with friends in college" class="personal-photo">
     </div>
-    <!-- Add more items as needed -->
-    <div class="carousel-item" style="background-color: #e0e0e0;">
-      <!-- Content for item 1 -->
-      <img src="{{ '/assets/img/personal/Personal_fam.jpg' | prepend: site.baseurl }}" alt="Speding time with family" class="personal-photo carousel-slide">
-      <!-- Or any other content -->
-      <!-- <h2>Slide 1</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_fam.jpg' | prepend: site.baseurl }}" alt="Spending time with family" class="personal-photo">
     </div>
-    <div class="carousel-item" style="background-color: #c0e0e0;">
-      <!-- Content for item 2 -->
-      <img src="{{ '/assets/img/personal/Personal_food.jpg' | prepend: site.baseurl }}" alt="Trying different food" class="personal-photo carousel-slide">
-      <!-- <h2>Slide 2</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_food.jpg' | prepend: site.baseurl }}" alt="Trying different food" class="personal-photo">
     </div>
-    <div class="carousel-item" style="background-color: #e0c0e0;">
-      <!-- Content for item 3 -->
-      <img src="{{ '/assets/img/personal/Personal_friends.jpg' | prepend: site.baseurl }}" alt="Speding time with friends" class="personal-photo carousel-slide">
-      <!-- <h2>Slide 3</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_friends.jpg' | prepend: site.baseurl }}" alt="Spending time with friends" class="personal-photo">
     </div>
-    <div class="carousel-item" style="background-color: #e0c0e0;">
-      <!-- Content for item 3 -->
-      <img src="{{ '/assets/img/personal/Personal_friends.jpg' | prepend: site.baseurl }}" alt="Speding time with friends" class="personal-photo carousel-slide">
-      <!-- <h2>Slide 3</h2> -->
+    <div class="carousel-item">
+      <img src="{{ '/assets/img/personal/Personal_fam1.jpg' | prepend: site.baseurl }}" alt="Spending time with family" class="personal-photo">
     </div>
-    
   </div>
   <button class="carousel-button prev" aria-label="Previous slide">&#10094;</button>
   <button class="carousel-button next" aria-label="Next slide">&#10095;</button>
@@ -51,3 +146,191 @@
     <!-- Dots will be generated by JavaScript -->
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel-container');
+
+    carousels.forEach(carouselContainer => {
+        const track = carouselContainer.querySelector('.carousel-track');
+        const items = Array.from(track.children).filter(child => child.classList.contains('carousel-item')); // Ensure we only count items
+        const nextButton = carouselContainer.querySelector('.carousel-button.next');
+        const prevButton = carouselContainer.querySelector('.carousel-button.prev');
+        const dotsContainer = carouselContainer.querySelector('.carousel-dots');
+
+        if (!track || items.length === 0) {
+            // console.warn('Carousel track or items not found for a carousel instance.');
+            return;
+        }
+        
+        if (items.length <= 1) {
+            if(nextButton) nextButton.style.display = 'none';
+            if(prevButton) prevButton.style.display = 'none';
+            if(dotsContainer) dotsContainer.style.display = 'none';
+            return;
+        }
+
+        let itemWidth = 0; 
+        const originalItemCount = items.length;
+        let currentIndex = 1; 
+        let isTransitioning = false;
+        let autoPlayInterval = null;
+        const autoPlayDelay = 5000; 
+
+        function initializeCarousel() {
+            if (items.length === 0) return;
+            
+            const firstClone = items[0].cloneNode(true);
+            firstClone.classList.add('clone');
+            firstClone.setAttribute('aria-hidden', 'true');
+
+            const lastClone = items[originalItemCount - 1].cloneNode(true);
+            lastClone.classList.add('clone');
+            lastClone.setAttribute('aria-hidden', 'true');
+
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, items[0]);
+
+            requestAnimationFrame(() => {
+                itemWidth = carouselContainer.getBoundingClientRect().width;
+                if (itemWidth === 0 && items[0]) { 
+                    itemWidth = items[0].getBoundingClientRect().width;
+                }
+
+                if (itemWidth > 0) {
+                    track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                }
+            });
+        }
+
+        initializeCarousel();
+        const allItems = Array.from(track.children); 
+
+        if (dotsContainer) {
+            dotsContainer.innerHTML = ''; 
+            for (let i = 0; i < originalItemCount; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('dot');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    if (isTransitioning) return;
+                    currentIndex = i + 1; 
+                    moveToSlide();
+                    resetAutoPlay();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+
+        function updateDots() {
+            if (!dotsContainer || dots.length === 0) return;
+            dots.forEach(dot => dot.classList.remove('active'));
+            const activeDotIndex = (currentIndex - 1 + originalItemCount) % originalItemCount;
+            if (dots[activeDotIndex]) {
+                dots[activeDotIndex].classList.add('active');
+            }
+        }
+        
+        function moveToSlide() {
+            if (itemWidth === 0) { 
+                 itemWidth = carouselContainer.getBoundingClientRect().width;
+                 if (itemWidth === 0 && items[0]) itemWidth = items[0].getBoundingClientRect().width;
+                 if (itemWidth === 0) {
+                    return;
+                 }
+            }
+            isTransitioning = true;
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+            updateDots();
+        }
+
+        function moveToNext() {
+            if (isTransitioning) return;
+            currentIndex++;
+            moveToSlide();
+        }
+
+        function moveToPrev() {
+            if (isTransitioning) return;
+            currentIndex--;
+            moveToSlide();
+        }
+
+        if (nextButton) nextButton.addEventListener('click', () => {
+            moveToNext();
+            resetAutoPlay();
+        });
+        if (prevButton) prevButton.addEventListener('click', () => {
+            moveToPrev();
+            resetAutoPlay();
+        });
+
+        track.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            if (currentIndex === 0 || currentIndex === allItems.length - 1) {
+                track.style.transition = 'none'; 
+                if (currentIndex === 0) { 
+                    currentIndex = originalItemCount; 
+                } else { 
+                    currentIndex = 1; 
+                }
+                track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+            }
+        });
+
+        function startAutoPlay() {
+            if (!autoPlayDelay || autoPlayDelay <=0 || originalItemCount <= 1) return;
+            stopAutoPlay(); 
+            autoPlayInterval = setInterval(() => {
+                moveToNext();
+            }, autoPlayDelay);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+        
+        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+        
+        carouselContainer.addEventListener('focusin', stopAutoPlay);
+        carouselContainer.addEventListener('focusout', startAutoPlay);
+
+        function handleResize() {
+            const newContainerWidth = carouselContainer.getBoundingClientRect().width;
+            if (newContainerWidth > 0) {
+                itemWidth = newContainerWidth;
+            } else if (items[0]) { 
+                itemWidth = items[0].getBoundingClientRect().width;
+            }
+            
+            track.style.transition = 'none'; 
+            if (itemWidth > 0) {
+                track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        requestAnimationFrame(() => {
+            itemWidth = carouselContainer.getBoundingClientRect().width;
+             if (itemWidth === 0 && items[0]) { 
+                itemWidth = items[0].getBoundingClientRect().width;
+            }
+            if (itemWidth > 0) {
+                 track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+            }
+            updateDots();
+            startAutoPlay(); 
+        });
+    });
+});
+</script>
