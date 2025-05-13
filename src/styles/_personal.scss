@@ -2,10 +2,10 @@
   // .personal-image-gallery is now the main carousel container
 .personal-image-gallery {
     position: relative; // For positioning nav buttons
-    overflow: hidden !important;   // Crucial: Hides the parts of the track that are not visible. Added !important for emphasis.
+    overflow: hidden !important;   // Crucial: Hides the parts of the track that are not visible.
     width: 100%; // Take full width of its parent (#personal)
-    max-width: 350px; // Max width of the carousel itself, adjust as needed
-    height: 450px;      // Explicitly set height to match slides, helps overflow:hidden
+    max-width: 90vw; // Base for very small screens
+    height: 320px;      // Base height for very small screens
     margin: 20px auto; // Center the carousel
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -36,15 +36,15 @@
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.4);
-    color: white;
+    color: #fff;
     border: none;
-    padding: 10px 15px;
-    font-size: 24px;
+    padding: 0; // Centering content within fixed width/height
+    font-size: 20px; // Base font size for icon
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 40px; // Base width
+    height: 40px; // Base height
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,5 +70,47 @@
     transform: translateX(-50%);
     display: flex;
     gap: 8px;
+    bottom: 10px; // Adjusted for smaller base height
+  }
+
+  // Responsive adjustments
+  // Standard Mobile
+  @media only screen and (min-width: 400px) {
+    .personal-image-gallery {
+      max-width: 380px;
+      height: 400px;
+    }
+    .carousel-button { // Slightly larger buttons
+      width: 45px;
+      height: 45px;
+      font-size: 24px;
+    }
+    .carousel-dots {
+      bottom: 15px; // Default position
+    }
+  }
+
+  // Large Mobile / Small Tablet Portrait (using $cut variable)
+  @media only screen and (min-width: $cut) { // $cut is 550px
+    .personal-image-gallery {
+      max-width: 500px;
+      height: 420px;
+    }
+  }
+
+  // Tablet / Small Laptop
+  @media only screen and (min-width: 768px) {
+    .personal-image-gallery {
+      max-width: 650px;
+      height: 450px;
+    }
+  }
+
+  // Desktop
+  @media only screen and (min-width: 1024px) {
+    .personal-image-gallery {
+      max-width: 700px;
+      height: 480px;
+    }
   }
 }
