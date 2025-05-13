@@ -114,6 +114,18 @@
       margin: 0 4px;
     }
   }
+
+  /* New breakpoint for phone sizes to swap arrow positions */
+  @media (max-width: 480px) {
+    .carousel-button.prev {
+      left: auto; /* Remove the default left positioning */
+      right: 10px; /* Position the 'prev' button on the right */
+    }
+    .carousel-button.next {
+      right: auto; /* Remove the default right positioning */
+      left: 10px; /* Position the 'next' button on the left */
+    }
+  }
 </style>
 
 <div class="carousel-container">
