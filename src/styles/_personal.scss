@@ -30,6 +30,15 @@
     // box-shadow: none; // Shadow on container is usually enough
     // transition: none; // Hover effects on individual slides might be distracting
   }
+  .carousel-controls {
+    position: absolute; // Position it relative to .personal-image-gallery
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; // Allow clicks/touches to pass through to the slides below,
+                          // unless an actual control element is targeted.
+  }
 
 .carousel-button {
     position: absolute;
@@ -48,10 +57,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto; 
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.7);
+      pointer-events: auto; 
     }
 
     &.prev {
@@ -106,11 +117,27 @@
     }
   }
 
-  // Desktop
+  // Standard Desktop / Smaller Laptops (including some MacBooks)
   @media only screen and (min-width: 1024px) {
     .personal-image-gallery {
       max-width: 700px;
       height: 480px;
+    }
+  }
+
+  // Larger Laptops (including 13-14" MacBooks) / Smaller Desktops
+  @media only screen and (min-width: 1280px) {
+    .personal-image-gallery {
+      max-width: 800px;
+      height: 500px;
+    }
+  }
+
+  // Very Large Laptops (including 16" MacBooks) / Larger Desktops / iMacs
+  @media only screen and (min-width: 1600px) {
+    .personal-image-gallery {
+      max-width: 900px;
+      height: 550px;
     }
   }
 }
