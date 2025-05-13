@@ -16,169 +16,166 @@
       {% include footer.html %}
       <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const carouselContainer = document.getElementById('personal-carousel-container');
-            if (!carouselContainer) {
-                // console.log('Personal carousel container not found on this page.');
-                return; // Exit if the carousel isn't on the current page
-            }
-
-            const track = carouselContainer.querySelector('.carousel-track');
-            const slides = Array.from(track.children).filter(child => child.classList.contains('carousel-slide'));
-            const nextButton = carouselContainer.querySelector('.carousel-button.next');
-            const prevButton = carouselContainer.querySelector('.carousel-button.prev');
-            const dotsContainer = carouselContainer.querySelector('.carousel-dots');
-
-            if (!track || slides.length === 0 || !nextButton || !prevButton || !dotsContainer) {
-                console.warn('Personal carousel is missing one or more essential elements (track, slides, buttons, or dots container). It will not initialize.');
-                if (slides.length === 0 && track) {
-                     let errorMsg = document.createElement('p');
-                     errorMsg.style.color = 'red';
-                     errorMsg.style.textAlign = 'center';
-                     errorMsg.style.padding = '20px';
-                     errorMsg.textContent = 'No slides found for carousel. Check image paths and "carousel-slide" class.';
-                     track.appendChild(errorMsg);
-                }
-                return;
-            }
-
-            let slideWidth = 0;
-            let currentIndex = 0;
-            let autoPlayInterval;
-            const autoPlayDelay = 5000; // 5 seconds for autoplay
-
-            // --- Helper Functions ---
-            const updateSlideWidthAndPosition = (isInitialSetup = false) => {
-                if (slides.length > 0) {
-                    // Ensure the container is visible to get correct width
-                    if (carouselContainer.offsetParent === null && !isInitialSetup) {
-                        // console.warn("Carousel container is not visible, cannot accurately update slide width.");
-                        return false; // Cannot update if not visible
-                    }
-                    const newSlideWidth = slides[0].getBoundingClientRect().width;
-                    if (newSlideWidth > 0) {
-                        slideWidth = newSlideWidth;
-                        track.style.transition = isInitialSetup ? 'none' : 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                        track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
-                        // Re-enable transition after a brief moment if it was initial setup
-                        if (isInitialSetup) {
-                            setTimeout(() => {
-                                track.style.transition = 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                            }, 50);
-                        }
-                        return true;
-                    } else if (isInitialSetup) {
-                        // Fallback if slide width is 0 on init (e.g. display:none parent)
-                        // Try to get width from container if possible
-                        const containerWidth = carouselContainer.getBoundingClientRect().width;
-                        if (containerWidth > 0) {
-                            slideWidth = containerWidth;
-                             track.style.transition = 'none';
-                            track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
-                            setTimeout(() => {
-                                track.style.transition = 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                            }, 50);
-                            return true;
-                        }
-                    }
-                }
-                // console.warn("Could not determine valid slide width.");
-                return false;
-            };
-            
-            const moveToSlide = (targetIndex) => {
-                if (slideWidth === 0) { // If slideWidth is still 0, try to update it
-                    if (!updateSlideWidthAndPosition()) {
-                        console.warn("Cannot move slide, slide width is 0 or could not be determined.");
-                        return;
-                    }
-                }
-                
-                track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
-                
-                if (dots.length > 0 && dots[currentIndex]) {
-                    dots[currentIndex].classList.remove('active');
-                }
-                if (dots.length > 0 && dots[targetIndex]) {
-                    dots[targetIndex].classList.add('active');
-                }
-                currentIndex = targetIndex;
-            };
-
-            // --- Create Dots ---
-            dotsContainer.innerHTML = ''; // Clear any existing dots
-            slides.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.classList.add('carousel-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                dot.addEventListener('click', () => {
-                    moveToSlide(index);
-                    resetAutoPlay();
-                });
-                dotsContainer.appendChild(dot);
-            });
-            const dots = Array.from(dotsContainer.children);
-
-            // --- Event Listeners ---
-            nextButton.addEventListener('click', () => {
-                const nextIndex = (currentIndex + 1) % slides.length; // Loop
-                moveToSlide(nextIndex);
-                resetAutoPlay();
-            });
-
-            prevButton.addEventListener('click', () => {
-                const prevIndex = (currentIndex - 1 + slides.length) % slides.length; // Loop
-                moveToSlide(prevIndex);
-                resetAutoPlay();
-            });
-
-            // --- Autoplay ---
-            const startAutoPlay = () => {
-                if (slides.length <= 1) return; // No autoplay for single or no slides
-                clearInterval(autoPlayInterval); 
-                autoPlayInterval = setInterval(() => {
-                    const nextIndex = (currentIndex + 1) % slides.length;
-                    moveToSlide(nextIndex);
-                }, autoPlayDelay);
-            };
-
-            const resetAutoPlay = () => {
-                clearInterval(autoPlayInterval);
-                startAutoPlay();
-            };
-
-            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-            carouselContainer.addEventListener('mouseleave', startAutoPlay);
-
-            // --- Responsive Resizing ---
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                track.style.transition = 'none'; // Disable transition during resize spam
-                resizeTimeout = setTimeout(() => {
-                    updateSlideWidthAndPosition(); // This will re-apply transition after calc
-                }, 250); // Debounce resize
-            });
-
-            // --- Initialization ---
-            // Use a small delay or IntersectionObserver for initial width calculation if elements might not be fully rendered
-            setTimeout(() => {
-                if (updateSlideWidthAndPosition(true)) { // Pass true for initial setup
-                    if (dots.length > 0 && dots[0]) dots[0].classList.add('active'); // Ensure first dot is active
-                    startAutoPlay();
-                } else {
-                    console.warn("Carousel could not be initialized properly due to slide width issues. It might require a resize to display correctly.");
-                    // Fallback: attempt to set track width if slides are present but width is zero
-                    if(slides.length > 0 && slideWidth === 0) {
-                        const containerWidth = carouselContainer.getBoundingClientRect().width;
-                        if(containerWidth > 0) {
-                            slideWidth = containerWidth;
-                            moveToSlide(0); // Try to position first slide
-                            startAutoPlay();
-                        }
-                    }
-                }
-            }, 100); // Small delay to help ensure elements are rendered
-        });
+          const carousels = document.querySelectorAll('.carousel-container');
+      
+          carousels.forEach(carouselContainer => {
+              const track = carouselContainer.querySelector('.carousel-track');
+              const items = Array.from(track.children);
+              const nextButton = carouselContainer.querySelector('.carousel-button.next');
+              const prevButton = carouselContainer.querySelector('.carousel-button.prev');
+              const dotsContainer = carouselContainer.querySelector('.carousel-dots');
+      
+              if (!track || items.length === 0) {
+                  // console.warn('Carousel track or items not found for a carousel instance.');
+                  return;
+              }
+              
+              // If only one item, disable carousel functionality
+              if (items.length <= 1) {
+                  if(nextButton) nextButton.style.display = 'none';
+                  if(prevButton) prevButton.style.display = 'none';
+                  if(dotsContainer) dotsContainer.style.display = 'none';
+                  return;
+              }
+      
+              let itemWidth = items[0].getBoundingClientRect().width;
+              const originalItemCount = items.length;
+              let currentIndex = 1; // Start at the first "real" item after prepended clone
+              let isTransitioning = false;
+              let autoPlayInterval = null;
+              const autoPlayDelay = 5000; // 5 seconds, set to null or 0 to disable
+      
+              // --- Infinite Scroll Setup: Clone first and last items ---
+              const firstClone = items[0].cloneNode(true);
+              firstClone.classList.add('clone');
+              firstClone.setAttribute('aria-hidden', 'true');
+      
+              const lastClone = items[originalItemCount - 1].cloneNode(true);
+              lastClone.classList.add('clone');
+              lastClone.setAttribute('aria-hidden', 'true');
+      
+              track.appendChild(firstClone);
+              track.insertBefore(lastClone, items[0]);
+      
+              const allItems = Array.from(track.children); // Update with clones
+      
+              // Initial position
+              track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+      
+              // --- Dots ---
+              if (dotsContainer) {
+                  for (let i = 0; i < originalItemCount; i++) {
+                      const dot = document.createElement('button');
+                      dot.classList.add('dot');
+                      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                      if (i === 0) dot.classList.add('active');
+                      dot.addEventListener('click', () => {
+                          if (isTransitioning) return;
+                          currentIndex = i + 1; // +1 because of the prepended clone
+                          moveToSlide();
+                          resetAutoPlay();
+                      });
+                      dotsContainer.appendChild(dot);
+                  }
+              }
+              const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+      
+              function updateDots() {
+                  if (!dotsContainer || dots.length === 0) return;
+                  dots.forEach(dot => dot.classList.remove('active'));
+                  const activeDotIndex = (currentIndex - 1 + originalItemCount) % originalItemCount;
+                  if (dots[activeDotIndex]) {
+                      dots[activeDotIndex].classList.add('active');
+                  }
+              }
+              
+              function moveToSlide() {
+                  isTransitioning = true;
+                  track.style.transition = 'transform 0.5s ease-in-out';
+                  track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                  updateDots();
+              }
+      
+              // --- Navigation ---
+              function moveToNext() {
+                  if (isTransitioning) return;
+                  currentIndex++;
+                  moveToSlide();
+              }
+      
+              function moveToPrev() {
+                  if (isTransitioning) return;
+                  currentIndex--;
+                  moveToSlide();
+              }
+      
+              if (nextButton) nextButton.addEventListener('click', () => {
+                  moveToNext();
+                  resetAutoPlay();
+              });
+              if (prevButton) prevButton.addEventListener('click', () => {
+                  moveToPrev();
+                  resetAutoPlay();
+              });
+      
+              // --- Handle Transition End for Infinite Loop ---
+              track.addEventListener('transitionend', () => {
+                  isTransitioning = false;
+                  // Check if current slide is a clone
+                  if (currentIndex === 0 || currentIndex === allItems.length - 1) {
+                      track.style.transition = 'none'; // Disable transition for the jump
+                      if (currentIndex === 0) { // Was at lastClone (prepended)
+                          currentIndex = originalItemCount; // Jump to the real last item
+                      } else { // Was at firstClone (appended) (currentIndex === allItems.length - 1)
+                          currentIndex = 1; // Jump to the real first item
+                      }
+                      track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                  }
+              });
+      
+              // --- Autoplay ---
+              function startAutoPlay() {
+                  if (!autoPlayDelay || autoPlayDelay <=0) return;
+                  stopAutoPlay(); // Clear existing interval
+                  autoPlayInterval = setInterval(() => {
+                      moveToNext();
+                  }, autoPlayDelay);
+              }
+      
+              function stopAutoPlay() {
+                  clearInterval(autoPlayInterval);
+              }
+      
+              function resetAutoPlay() {
+                  stopAutoPlay();
+                  startAutoPlay();
+              }
+              
+              // Pause autoplay on hover
+              carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+              carouselContainer.addEventListener('mouseleave', startAutoPlay);
+              
+              // Pause autoplay on focus within
+              carouselContainer.addEventListener('focusin', stopAutoPlay);
+              carouselContainer.addEventListener('focusout', startAutoPlay);
+      
+      
+              // --- Responsiveness ---
+              function handleResize() {
+                  // Ensure itemWidth is based on the carousel container's current width
+                  itemWidth = carouselContainer.getBoundingClientRect().width;
+                  
+                  track.style.transition = 'none'; // No animation on resize
+                  track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+              }
+      
+              window.addEventListener('resize', handleResize);
+      
+              // Initial setup
+              updateDots();
+              startAutoPlay(); // Start autoplay if enabled
+          });
+      });
+      
       </script>
   </body>
